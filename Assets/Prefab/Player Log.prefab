@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmp: {fileID: 1227544174265793387}
-  restrictWidth: 800
+  restrictWidth: 700
 --- !u!1 &8709810349681384066
 GameObject:
   m_ObjectHideFlags: 0
