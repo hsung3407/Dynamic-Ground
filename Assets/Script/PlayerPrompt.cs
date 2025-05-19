@@ -36,7 +36,12 @@ namespace Script
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 var input = playerPrompt.text;
-                if (Input.GetKey(KeyCode.LeftShift) || input.Trim() == "" || gameManager.InputPrompt(input)) return;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    playerPrompt.text = input + "\n";
+                    return;
+                }
+                if (input.Trim() == "" || !gameManager.InputPrompt(input)) return;
                 playerPrompt.text = "";
             }
         }
