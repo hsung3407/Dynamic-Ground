@@ -12,8 +12,9 @@ namespace Script.Networking
     public class Networking : MonoBehaviour
     {
         private static Networking _networking;
-        //groq ai api key
         private const string URL = "https://api.groq.com/openai/v1/chat/completions";
+
+        //groq ai api key
         private const string APIKey = "";
 
         private void Awake()
