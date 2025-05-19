@@ -14,7 +14,7 @@ namespace Script.Networking
         private static Networking _networking;
         //groq ai api key
         private const string URL = "https://api.groq.com/openai/v1/chat/completions";
-        private const string APIKey = "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";
+        private const string APIKey = "";
 
         private void Awake()
         {
@@ -68,9 +68,10 @@ namespace Script.Networking
                 using var webRequest = WebRequest(url);
                 webRequest.timeout = 15;
                 webRequest.SetRequestHeader("Content-Type", "application/json");
-                webRequest.SetRequestHeader("Authorization", $"Baerer {APIKey}");
+                webRequest.SetRequestHeader("Authorization", $"Bearer {APIKey}");
+                Debugger.Log($"Headers: {webRequest.GetRequestHeader("Authorization")}");
                 yield return webRequest.SendWebRequest();
-                
+
                 Debugger.Log($"ResponseCode: {webRequest.responseCode}");
                 if (webRequest.downloadHandler == null) webRequest.downloadHandler = new DownloadHandlerBuffer();
                 var bodyText = webRequest.downloadHandler.text;
