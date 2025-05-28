@@ -12,26 +12,16 @@ namespace Script
 
         public bool IsWait { get; private set; }
 
-        private void Awake()
-        {
-            PreEngineering();
-        }
-
         public void Chat(string input, Action<Schemas.ChatResponse> onResponse)
         {
             var req = new Schemas.ChatRequest();
             req.model = model;
-            req.messages = new List<Schemas.Message>() { new Schemas.Message() { role = Schemas.Role.User, content = input } };
+            req.messages = new List<Schemas.Message>() { new Schemas.Message() { role = "user", content = input } };
 
             IsWait = true;
             API.Chat(req)
                 .OnResponse(onResponse + (res => IsWait = false))
                 .Build();
-        }
-
-        private void PreEngineering()
-        {
-            
         }
     }
 }
