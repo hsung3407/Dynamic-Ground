@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Script.Networking
@@ -24,8 +25,19 @@ namespace Script.Networking
         [JsonObject("massage")]
         public class Message
         {
-            public string role;
+            public Role role;
             public string content;
+        }
+
+        [Serializable]
+        public enum Role
+        {
+            [EnumMember(Value = "system")]
+            System,
+            [EnumMember(Value = "user")]
+            User,
+            [EnumMember(Value = "assistant")]
+            Assistant
         }
 
         [Serializable]
