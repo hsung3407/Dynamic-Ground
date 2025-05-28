@@ -10,18 +10,17 @@ namespace Script
     {
         [SerializeField] private string model = "llama-3.3-70b-versatile";
 
-        private readonly List<Schemas.Message> _messages = new List<Schemas.Message>();
+        public bool IsWait { get; private set; }
 
         public void Chat(string input, Action<Schemas.ChatResponse> onResponse)
         {
             var req = new Schemas.ChatRequest();
             req.model = model;
-            _messages.Add(new Schemas.Message() { role = "user", content = input });
-            req.messages = _messages;
+            req.messages = new List<Schemas.Message>() { new Schemas.Message() { role = "user", content = input } };
 
+            IsWait = true;
             API.Chat(req)
-                .OnResponse(onResponse + (res => _messages.Add(res.choices.Last()
-                    .message)))
+                .OnResponse(onResponse + (res => IsWait = false))
                 .Build();
         }
     }
