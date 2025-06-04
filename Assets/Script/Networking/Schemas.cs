@@ -21,7 +21,14 @@ namespace Script.Networking
         }
 
         [Serializable]
-        [JsonObject("massage")]
+        [JsonObject("messages")]
+        public class Messages
+        {
+            public List<Message> messages;
+        }
+
+        [Serializable]
+        [JsonObject("message")]
         public class Message
         {
             public string role;

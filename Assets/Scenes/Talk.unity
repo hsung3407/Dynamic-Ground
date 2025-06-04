@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: llama-3.3-70b-versatile
+  _talkLogLimitLength: 20000
 --- !u!4 &202048440
 Transform:
   m_ObjectHideFlags: 0

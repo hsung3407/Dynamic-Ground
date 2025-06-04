@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Script.Networking;
 using UnityEngine;
 
@@ -7,10 +9,27 @@ namespace Script
     {
         [SerializeField] private LogManager logManager;
         [SerializeField] private Model model;
+        
+        private bool _started = false;
+
+        private void Start()
+        {
+            StartCoroutine(StartSequence());
+        }
+
+        private IEnumerator StartSequence()
+        {
+            yield return new WaitUntil(() => model.IsWait);
+            model.Chat("랜덤한 배경과 캐릭터, 설정과 세계관을 이전 대화의 형식대로 시작하라", res =>
+            {
+                ReceiveResponse(res);
+                _started = true;
+            });
+        }
 
         public bool InputPrompt(string prompt)
         {
-            if (model.IsWait) return false;
+            if (model.IsWait || !_started) return false;
 
             model.Chat(prompt, ReceiveResponse);
 
