@@ -20,7 +20,7 @@ namespace Script
         private IEnumerator StartSequence()
         {
             yield return new WaitUntil(() => model.IsWait);
-            model.Chat("랜덤한 배경과 캐릭터, 설정과 세계관을 이전 대화의 형식대로 시작하라", res =>
+            model.Chat("랜덤한 배경과 캐릭터, 설정과 세계관으로 이루어진 TRPG 게임을 형식대로 시작하라", res =>
             {
                 ReceiveResponse(res);
                 _started = true;
