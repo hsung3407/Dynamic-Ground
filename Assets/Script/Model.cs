@@ -58,7 +58,7 @@ namespace Script
             API.Chat(req)
                 .OnResponse(onResponse + (res =>
                 {
-                    _talkLogData.Add(res.choices[Random.Range(0, res.choices.Count)].message);
+                    _talkLogData.Add(res.choices[0].message);
                     IsWait = false;
                 }))
                 .Build();
